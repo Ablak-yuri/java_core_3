@@ -5,13 +5,14 @@ import java.util.Arrays;
 
 public class Homework1 {
     public static void main(String[] args) {
-//        ex1();
-//        ex2();
-//        ex3();
+        ex1();
+        ex2();
+        ex3();
         ex4();
     }
 
     public static void ex1() {
+        System.out.println("Задание 1");
         //Дана строка
         String name = "     ПЕтРов Олег Иванович     ";
         //Необходимо
@@ -31,9 +32,11 @@ public class Homework1 {
             System.out.println("Уважаемый " + trimmedUpperCase);
         } else
             System.out.println("Неизвестное лицо " + trimmedUpperCase);
+        System.out.println("----------------");
     }
 
     public static void ex2() {
+        System.out.println("Задание 2");
         //У нас есть машина. В данной машине есть есть перечень проверок, перед запуском
         //Количество топлива
         double fuel = 10;
@@ -59,9 +62,11 @@ public class Homework1 {
         } else {
             System.out.println("Машина не работает");
         }
+        System.out.println("----------------");
     }
 
     public static void ex3() {
+        System.out.println("Задание 3");
         String simply = "this is simply. This is my favorite song.";
 
         //Работа на самостоятельное изучение методов.
@@ -74,9 +79,11 @@ public class Homework1 {
         int indexOfSecond = replaced.indexOf("o", indexOfFirst + 1);
         //Распечатать полученный индекс
         System.out.println(indexOfSecond);
+        System.out.println("----------------");
     }
 
     public static void ex4() {
+        System.out.println("Задание 4");
         //Компания Рога и Копыта производит мясные продукты.
         //Перечень производимых товаров :
         //Колбаса - стоимость 800 руб,
@@ -143,10 +150,7 @@ public class Homework1 {
             porknecksCostPrice = 299;
         }
 
-        //Проверка себестоимости
-        System.out.println(sausageCostPrice);
-        System.out.println(hamCostPrice);
-        System.out.println(porknecksCostPrice);
+
 
         //Доход компании
         long incomeSausage = sausage * sausagePrice;
@@ -162,7 +166,6 @@ public class Homework1 {
 
         //Прибыль до налогов
         long profitBeforeTax = income - expense;
-        System.out.println(profitBeforeTax);
 
         //Налог
         double taxes = 0;
@@ -188,6 +191,12 @@ public class Homework1 {
 
         //Пересчитываю, чтоб вернуть обратно значение
         profitBeforeTax = income - expense;
+
+        //Распечатываем результат
+        System.out.println("Колбаса: " + sausage);
+        System.out.println("Ветчина: " + ham);
+        System.out.println("Щейки: " + porknecks);
+        System.out.println();
         System.out.println("Прибыль после налогов: " + (profitBeforeTax - taxes));
     }
 }
