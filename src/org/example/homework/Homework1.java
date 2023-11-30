@@ -1,10 +1,13 @@
 package org.example.homework;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
+
 public class Homework1 {
     public static void main(String[] args) {
-        ex1();
-        ex2();
-        ex3();
+//        ex1();
+//        ex2();
+//        ex3();
         ex4();
     }
 
@@ -13,10 +16,21 @@ public class Homework1 {
         String name = "     ПЕтРов Олег Иванович     ";
         //Необходимо
         //1. убрать лишние пробелы,
+        String trimmed = name.trim();
+        System.out.println(trimmed);
         //2. перевести текст в верхний регистр
+        String trimmedUpperCase = trimmed.toUpperCase();
+        System.out.println(trimmedUpperCase);
         //3. Если содержит "ова " то печатаем на экран: Уважаемая {name}
         // Если содержит "ов " то печатаем на экран: Уважаемый {name}
         // В иных случаях печатаем на экран: Неизвестное лицо {name}
+        String lowerCase = trimmedUpperCase.toLowerCase();
+        if (lowerCase.contains("ова")) {
+            System.out.println("Уважаемая " + trimmedUpperCase);
+        } else if (lowerCase.contains("ов")) {
+            System.out.println("Уважаемый " + trimmedUpperCase);
+        } else
+            System.out.println("Неизвестное лицо " + trimmedUpperCase);
     }
 
     public static void ex2() {
@@ -36,11 +50,10 @@ public class Homework1 {
         //Поменять(убрать, поставить) логические операторы так, чтобы машина запускалась:
         // когда топлива не меньше 10 литров, двигатель работает, колеса все работают, нет ошибок
         //В ином случае, машина не должна запускаться
-        if (
-                fuel < 10
-                ||  (!isWheelWork1 || isWheelWork2 || isWheelWork3 || isWheelWork4)
-                && hasErrors
-                || isEngineWork
+        if (fuel >= 10
+                && (isWheelWork1 || isWheelWork2 || isWheelWork3 || isWheelWork4)
+                && !hasErrors
+                && isEngineWork
         ) {
             System.out.println("Машина работает");
         } else {
@@ -49,10 +62,18 @@ public class Homework1 {
     }
 
     public static void ex3() {
-        //Работа на самостоятельное изучение методов.
-        //Заменить в строке все 'this is' на 'those are', получить индекс (число) второй буквы 'o' в строке
-        //Распечатать полученный индекс
         String simply = "this is simply. This is my favorite song.";
+
+        //Работа на самостоятельное изучение методов.
+        //Заменить в строке все 'this is' на 'those are',
+        String lowerCase = simply.toLowerCase();
+        String replaced = lowerCase.replace("this is", "those are");
+        System.out.println(replaced);
+        // получить индекс (число) второй буквы 'o' в строке
+        int indexOfFirst = replaced.indexOf("o");
+        int indexOfSecond = replaced.indexOf("o", indexOfFirst + 1);
+        //Распечатать полученный индекс
+        System.out.println(indexOfSecond);
     }
 
     public static void ex4() {
@@ -92,5 +113,81 @@ public class Homework1 {
         //Колбасы 2000кг
         //Ветчины 8511кг
         //Шейки 6988кг
+
+        //Всего продано
+        int sausage = 2000;
+        int ham = 8511;
+        int porknecks = 6988;
+
+        //стоимость
+        int sausagePrice = 800;
+        int hamPrice = 350;
+        int porknecksPrice = 500;
+
+        //вычисление себестоимости
+        int sausageCostPrice = 0;
+        if (sausage < 1000) {
+            sausageCostPrice = 412;
+        } else if (sausage >= 1000 && sausage < 2000) {
+            sausageCostPrice = 408;
+        } else {
+            sausageCostPrice = 404;
+        }
+
+        int hamCostPrice = 275;
+
+        int porknecksCostPrice = 0;
+        if (porknecks < 500) {
+            porknecksCostPrice = 311;
+        } else {
+            porknecksCostPrice = 299;
+        }
+
+        //Проверка себестоимости
+        System.out.println(sausageCostPrice);
+        System.out.println(hamCostPrice);
+        System.out.println(porknecksCostPrice);
+
+        //Доход компании
+        long incomeSausage = sausage * sausagePrice;
+        long incomeHam = ham * hamPrice;
+        long incomePorknecks = porknecks * porknecksPrice;
+        long income = incomeSausage + incomeHam + incomePorknecks;
+
+        //Расход компании
+        long expenseSausage = sausageCostPrice * sausage;
+        long expenseHam = hamCostPrice * ham;
+        long expensePorknecks = porknecksCostPrice * porknecks;
+        long expense = expenseSausage + expenseHam + expensePorknecks + 1000000;
+
+        //Прибыль до налогов
+        long profitBeforeTax = income - expense;
+        System.out.println(profitBeforeTax);
+
+        //Налог
+        double taxes = 0;
+        if (profitBeforeTax > 2000000) {
+            taxes = 80000;
+            profitBeforeTax = profitBeforeTax - 1000000;
+            if (profitBeforeTax < 2000000 && profitBeforeTax > 1000000) {
+                profitBeforeTax = profitBeforeTax - 1000000;
+                taxes = taxes + 100000;
+                if (profitBeforeTax < 1000000) {
+                    taxes = taxes + 65000;
+                }
+            }
+        } else if (profitBeforeTax < 2000000 && profitBeforeTax > 1000000) {
+            taxes = 100000;
+            profitBeforeTax = profitBeforeTax - 1000000;
+            if (profitBeforeTax < 1000000) {
+                taxes = taxes + 65000;
+            }
+        } else if (profitBeforeTax < 1000000) {
+            taxes = 65000;
+        }
+
+        //Пересчитываю, чтоб вернуть обратно значение
+        profitBeforeTax = income - expense;
+        System.out.println("Прибыль после налогов: " + (profitBeforeTax - taxes));
     }
 }
